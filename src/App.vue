@@ -15,6 +15,7 @@
       <ul>
         <li v-for="(item, index) in cart" :key="index">
           {{ item.name }} - ₱{{ item.price }}
+          <button @click="removeFromCart(index)" class="remove-btn">Remove</button>
         </li>
       </ul>
       <p><strong>Total: ₱{{ totalCost }}</strong></p>
@@ -34,7 +35,11 @@ const products = ref([
 const cart = ref([]);
 
 const addToCart = (product) => {
-  cart.ref.value.push(product);
+  cart.value.push(product);
+};
+
+const removeFromCart = (index) => {
+  cart.value.splice(index, 1);
 };
 
 const cartCount = computed(() => cart.value.length);
@@ -47,4 +52,5 @@ const totalCost = computed(() => cart.value.reduce((acc, item) => acc + item.pri
 .card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; flex: 1; }
 .cart { margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px; }
 button { background: #ff5000; color: white; border: none; padding: 10px; cursor: pointer; }
+.remove-btn { background: #ff0000; margin-left: 10px; padding: 5px 10px; font-size: 0.8rem; border-radius: 4px; }
 </style>
