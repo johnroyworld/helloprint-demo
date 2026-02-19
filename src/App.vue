@@ -34,7 +34,7 @@ const products = ref([
 const cart = ref([]);
 
 const addToCart = (product) => {
-  cart.ref.value.push(product);
+  cart.value.push(product);
 };
 
 const cartCount = computed(() => cart.value.length);
